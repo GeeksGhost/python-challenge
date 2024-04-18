@@ -5,9 +5,7 @@ import csv
 # set path for file
 csvpath = os.path.join("Resources", "budget_data.csv")
 
-
-import csv
-
+# Creates a function to summarize the data in the csv
 def pybank(budget_data):
     # list to store data
     total_months = 0
@@ -49,14 +47,25 @@ def pybank(budget_data):
 
     average_difference = total_sum / total_months
 
-    # Print 
-    print ("Finanacial Analysis\n")
-    print("--------------------------------------------\n")
-    print("Total months:", total_months, "\n")
-    print("Total: $" , net_total,"\n")
-    print("Average Change: $", average_difference, "\n")
-    print("Greatest Increase in Profits: " + greatest_month + " ($" + str(greatest_increase) + ")\n")
-    print("Greatest Increase in Profits: " + worst_month + " ($" + str(greatest_decrease) + ")")
+    # Print and write to file "PyBankResults.txt"
+    with open("PyBankResults.txt", "w") as file:  
+        
+        print ("Finanacial Analysis\n")
+        file.write("Financial Analysis\n")
+        print("--------------------------------------------\n")
+        file.write("--------------------------------------------\n")
+        print("Total months:", total_months, "\n")
+        file.write("Total months:" + str(total_months) + "\n")
+        print("Total: $" , net_total, "\n")
+        file.write("Total: $" + str(net_total) + "\n")
+        print("Average Change: $", average_difference, "\n")
+        file.write("Average Change: $"+ str(average_difference) + "\n")
+        print("Greatest Increase in Profits: " + greatest_month + " ($" + str(greatest_increase) + ")\n")
+        file.write("Greatest Increase in Profits: " + greatest_month + " ($" + str(greatest_increase) + ")\n")
+        print("Greatest Increase in Profits: " + worst_month + " ($" + str(greatest_decrease) + ")")
+        file.write("Greatest Increase in Profits: " + worst_month + " ($" + str(greatest_decrease) + ")")
+
+
 # Open the CSV file
 with open(csvpath, encoding="utf8") as csvfile:
     # Create a CSV reader object
